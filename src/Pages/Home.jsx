@@ -21,7 +21,7 @@ const Home = () => {
 
           <div className='col-span-1 md:col-span-1 mx-auto border' key={index}>
             <Link to={`/product/${item.id}`}>
-              <Card id={item.id} thumbnail={item.thumbnail} title={item.title} price={item.price} currency={currency} rating={item.rating} />
+              <Card id={item.id} thumbnail={item.thumbnail} title={item.title} price={item.price} currency={currency} rating={item.rating}  />
             </Link>
           </div>
         ))}

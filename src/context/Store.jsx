@@ -1,4 +1,6 @@
+import React from "react";
 import { createContext, useEffect, useState } from "react";
+import { toast, Flip } from "react-toastify";
 
 export const Store = createContext()
 
@@ -9,6 +11,8 @@ const StoreProvider = (props) => {
     const [addItemCount, setAddItemCount] = useState(0)
     const [addItem, setAddItem] = useState([])
     const [favItem, setFavItem] = useState([])
+    // const [orederQuantity, setOrederQuantity] = useState([])
+
 
 
 
@@ -65,22 +69,24 @@ const StoreProvider = (props) => {
 
     useEffect(() => {
         // console.log('Added Items', addItem);
-        // console.log(addItem);
+        console.log(addItem);
         let cartItemsCount = addItem.length
         setAddItemCount(cartItemsCount)
         setFavItem(favItem)
         // console.log(favItem);
-        
 
-    }, [addItem,favItem])
+
+    }, [addItem, favItem])
+
 
 
 
 
 
     const AddToCart = (items) => {
-        // console.log(items);
         let CopyCartData = structuredClone(addItem)
+
+        // console.log(items);
 
         //    if (Object.keys(CopyCartData).length === 0 && CopyCartData.constructor === Object){
         // console.log( CopyCartData.length + 1);
@@ -93,7 +99,19 @@ const StoreProvider = (props) => {
                 // return null
             }
             else {
-                console.log('This Product Already Added');
+                toast.error('This Product Already Added', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Flip,
+                });
+                return
+                // console.log('This Product Already Added');
                 // console.log('Second', matchProduct);
                 // return
             }
@@ -103,6 +121,25 @@ const StoreProvider = (props) => {
             console.log('Somethnig went wrong');
         }
 
+    }
+
+
+
+    const UpdateItemQuantity = (itemID) => {
+        let CopyCartData = structuredClone(addItem)
+        let MatchID = CopyCartData.find(item => item.id === itemID)
+
+        if(MatchID){
+            console.log('Match', itemID);
+            
+        }
+        else{
+            console.log('Did Not MAtch', itemID);
+            
+        }
+
+
+        console.log(itemID, CopyCartData);
     }
 
 
@@ -139,9 +176,10 @@ const StoreProvider = (props) => {
 
 
 
-
     const value = {
-        rupee, currencyFrom, currency, product, setProduct, addItemCount, setAddItemCount, AddToCart, addItem, setAddItem ,favItem, setFavItem
+        rupee, currencyFrom, currency, product, setProduct,
+        addItemCount, setAddItemCount, AddToCart, addItem, setAddItem,
+        favItem, setFavItem, UpdateItemQuantity
     }
 
 

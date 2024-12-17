@@ -1,5 +1,7 @@
 // import './App.css'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, Routes } from 'react-router-dom'
+
+
 import Home from './Pages/Home'
 import About from './Pages/About'
 import Cart from './Pages/Cart'
@@ -12,8 +14,11 @@ import Product from './Pages/Product'
 import Layout from './Pages/Layout'
 import Services from './Pages/Services'
 
-function App() {
 
+
+import 'react-toastify/dist/ReactToastify.css';
+
+function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
