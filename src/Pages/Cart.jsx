@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import { Store } from '../Context/Store'
+import { Store } from '../context/Store'
 
 const Cart = () => {
 
@@ -13,7 +13,7 @@ const Cart = () => {
   function increaseQuantity(id) {
     console.log('increase', id);
     UpdateItemQuantity(id)
-    
+
     // let product_ID = id
     // setOrederQuantity()
 
@@ -21,9 +21,9 @@ const Cart = () => {
 
 
   function decreaseQuantity(id) {
-    console.log('increase', id);
+    console.log('decrease', id);
     UpdateItemQuantity(id)
-    
+
     // let product_ID = id
 
   }
@@ -90,9 +90,9 @@ const Cart = () => {
                         <input type="number" className='quantityInput text-black w-full text-center' defaultValue={orederQuantity} onChange={(e) => setOrederQuantity(cardinfo.id(Number(e.target.value)))} />
                         <button className='increase px-2 py-1 bg-gray-200' onClick={() => { decreaseQuantity(cardinfo.id) }}>+</button> */}
 
-                        <button className='decrease px-2 py-1 bg-gray-200' onClick={() => { increaseQuantity(cardinfo.id) }}>-</button>
+                        <button className='decrease px-2 py-1 bg-gray-200' onClick={() => { decreaseQuantity(cardinfo.id) }}>-</button>
                         {/* <input type="number" className='quantityInput text-black w-full text-center' defaultValue={UpdateItemQuantity} onChange={(e) => UpdateItemQuantity(cardinfo.id(Number(e.target.value)))} /> */}
-                        <button className='increase px-2 py-1 bg-gray-200' onClick={() => { decreaseQuantity(cardinfo.id) }}>+</button>
+                        <button className='increase px-2 py-1 bg-gray-200' onClick={() => { increaseQuantity(cardinfo.id) }}>+</button>
 
                       </div>
                     </div>

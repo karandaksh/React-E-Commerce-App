@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Store } from '../Context/Store'
+import { Store } from '../context/Store'
 import { Link } from 'react-router-dom'
 import Card from '../Component/Card'
 

@@ -21,14 +21,31 @@ const StoreProvider = (props) => {
     const currencyFrom = 'From'
 
 
+    // const Products = () => {
 
-
-    let CopyCartData = structuredClone(addItem) // All  Items Copy (Clone) Data
-    console.log(CopyCartData);
+    //     fetch(APIURL)
+    //         .then((res) => {
+    //             if (!res.ok) {
+    //                 throw new Error('API NOT WORKING PROPERLY')
+    //             }
+    //             else {
+    //                 return res.json()
+    //             }
+    //         })
+    //         .then((data) => {
+    //             // console.log(data.products);
+    //             return setProduct(data.products)
+    //         })
+    //         .catch((err) => {
+    //             throw new Error('Response Not Get Somthing went wrong', err)
+    //         })
+    // }
 
 
 
     useEffect(() => {
+        // Products()
+
         fetch(APIURL)
             .then((res) => {
                 if (!res.ok) {
@@ -40,10 +57,7 @@ const StoreProvider = (props) => {
             })
             .then((data) => {
                 // console.log(data.products);
-                // return setProduct(data.products)
-                let products = data.products
-                let productsCopy = products.map(items => ({ ...items, quantity: 1 }))
-                return setProduct(productsCopy)
+                return setProduct(data.products)
             })
             .catch((err) => {
                 throw new Error('Proper Right Response Not Get Somthing went wrong', err)
@@ -60,6 +74,8 @@ const StoreProvider = (props) => {
         setAddItemCount(cartItemsCount)
         setFavItem(favItem)
         // console.log(favItem);
+
+
     }, [addItem, favItem])
 
 
@@ -68,6 +84,13 @@ const StoreProvider = (props) => {
 
 
     const AddToCart = (items) => {
+        let CopyCartData = structuredClone(addItem)
+
+        // console.log(items);
+
+        //    if (Object.keys(CopyCartData).length === 0 && CopyCartData.constructor === Object){
+        // console.log( CopyCartData.length + 1);
+
 
         if (CopyCartData.length < CopyCartData.length + 1) {
             const matchProduct = CopyCartData.find(item => item.id === items.id)
@@ -103,9 +126,27 @@ const StoreProvider = (props) => {
 
 
     const UpdateItemQuantity = (itemID) => {
+        let CopyCartData = structuredClone(addItem)
+        let MatchID = CopyCartData.find(item => item.id === itemID)
+        let ProductQuantity = []
+
+        if( MatchID){
+            
+            CopyCartData.forEach(item => (
+                console.log(item.id)
+                
+            ))
+            
+        }
+        else{
+            console.log('Did Not MAtch', itemID);
+            
+        }
 
 
+        console.log(itemID, CopyCartData);
     }
+
 
 
 

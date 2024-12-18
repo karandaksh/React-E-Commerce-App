@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 
 // import { Store } from '../context/Store'
-import { Store } from '../Context/Store'
+import { Store } from '../context/Store'
 
 
 const Navbar = () => {
