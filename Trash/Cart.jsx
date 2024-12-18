@@ -4,7 +4,7 @@ import { Store } from '../context/Store'
 
 const Cart = () => {
 
-  const { addItem, UpdateItemQuantity, increaseQuantity, decreaseQuantity } = useContext(Store)
+  const { addItem, UpdateItemQuantity, orederQuantity, setOrederQuantity, increaseQuantity, decreaseQuantity } = useContext(Store)
   // const [quantity, setQuantity] = useState(1)
 
 

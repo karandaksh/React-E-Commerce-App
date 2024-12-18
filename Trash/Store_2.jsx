@@ -10,9 +10,8 @@ const StoreProvider = (props) => {
     const [product, setProduct] = useState([])
     const [addItemCount, setAddItemCount] = useState(0)
     const [addItem, setAddItem] = useState([])
-    const [orederQuantity, setOrederQuantity] = useState([])
     const [favItem, setFavItem] = useState([])
-
+    const [orederQuantity, setOrederQuantity] = useState(1)
 
 
 
@@ -25,6 +24,7 @@ const StoreProvider = (props) => {
 
 
     let CopyCartData = structuredClone(addItem) // All  Items Copy (Clone) Data
+    // console.log(CopyCartData);
 
 
 
@@ -59,8 +59,11 @@ const StoreProvider = (props) => {
         let cartItemsCount = addItem.length
         setAddItemCount(cartItemsCount)
         setFavItem(favItem)
+        // console.log(orederQuantity);
 
-    }, [addItem, favItem,])
+
+        // console.log(favItem);
+    }, [addItem, favItem,]) //orederQuantity])
 
 
 
@@ -101,27 +104,54 @@ const StoreProvider = (props) => {
     }
 
 
+    function setOrder(idItem) {
+        return function (itemQty) {
+            return console.log("id", idItem, "QTy", itemQty);
+        }
+    }
 
-
-
-
-    const UpdateItemQuantity = (itemID,) => {
-        console.log("id", itemID, "qty",)
+    function setOrderQuantity(newQuantity){
+        return newQuantity
     }
 
 
 
 
+    const UpdateItemQuantity = (itemID,) => {
+        console.log("id", itemID, "qty", orederQuantity, "custom",);
+    }
+
     const increaseQuantity = (itemID) => {
+        // console.log(itemID);
+
         let currentProduct = CopyCartData.find((item_products) => item_products.id === itemID)
         let orderQuantity = currentProduct.quantity
 
-        function UpdateQuantity() {
-            console.log('working', orderQuantity++, typeof orderQuantity);
+        setOrder(itemID)(setOrderQuantity(Number(orderQuantity + 1)));
 
-        }
-        UpdateQuantity()
+        // setOrder(itemID)(
+        //     currentProduct.quantity(setOrederQuantity(Number(orederQuantity + 1)))
+        // )
 
+
+        // console.log(currentProduct.quantity);
+        // setOrederQuantity
+
+
+
+        // if (orederQuantity >= 10) {
+        //     toast.warn('One User Can Added Only 10 Product', {
+        //         position: "top-right",
+        //         autoClose: 5000,
+        //         hideProgressBar: false,
+        //         closeOnClick: false,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //         theme: "colored",
+        //         transition: Zoom,
+        //     });
+        // }
     }
 
     const decreaseQuantity = (itemID) => {
@@ -164,7 +194,8 @@ const StoreProvider = (props) => {
     const value = {
         rupee, currencyFrom, currency, product, setProduct,
         addItemCount, setAddItemCount, AddToCart, addItem, setAddItem,
-        favItem, setFavItem, increaseQuantity, decreaseQuantity, UpdateItemQuantity,
+        favItem, setFavItem, orederQuantity, setOrederQuantity,
+        increaseQuantity, decreaseQuantity, UpdateItemQuantity,
     }
 
 
@@ -177,4 +208,34 @@ const StoreProvider = (props) => {
 }
 
 export default StoreProvider
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
