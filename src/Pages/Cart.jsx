@@ -4,11 +4,22 @@ import { Store } from '../context/Store'
 
 const Cart = () => {
 
-  const { addItem, UpdateItemQuantity, increaseQuantity, decreaseQuantity } = useContext(Store)
+  const { setAddItem, addItem, currency, increaseQuantity, decreaseQuantity, TotalPrice,Productprice } = useContext(Store)
   // const [quantity, setQuantity] = useState(1)
 
 
+  useEffect(() => {
+    // setProductPrice(Productprice)
+    // console.log(Productprice);
+    // console.log(Productprice);
+
+  }, [addItem])
+
+
   let cartItems = addItem
+
+
+ 
 
   // function increaseQuantity(id) {
   //   console.log('increase', id);
@@ -83,26 +94,59 @@ const Cart = () => {
                       {/* <p>Warranty :- <span className='text-gray-400'> {cardinfo.warrantyInformation} </span></p> */}
                     </div>
 
-                    {/* <div className="col-span-1 px-4">
-                      <p className='text-center'>  {1} </p>
-                    </div> */}
+
+                    {/* Quantity Feature  Start */}
 
 
                     <div className="col-span-1 text-center">
-                      {/* <h6>Quantity</h6> */}
+                      <div className="flex items-center justify-center">
+                        <button className='decrease px-2 py-1 bg-gray-200' onClick={() => decreaseQuantity(cardinfo.id)}>-</button>
+
+                        <input
+                          type="number"
+                          className='quantityInput text-black w-full text-center'
+                          value={cardinfo.quantity} // Bind the value directly to the state
+                          onChange={(e) => {
+
+                            const newQuantity = Number(e.target.value);
+                            if (newQuantity >= 1) {
+                              const updatedCart = addItem.map(item =>
+                                item.id === cardinfo.id ? { ...item, quantity: newQuantity } : item
+                              );
+                              setAddItem(updatedCart); // Update state with new quantity                              
+                            }
+                          }}
+                        />
+
+                        <button className='increase px-2 py-1 bg-gray-200' onClick={() => {increaseQuantity(cardinfo.id) ,TotalPrice(cardinfo.id , cardinfo.quantity, cardinfo.price) }}>+</button>
+                      </div>
+                    </div>
+
+
+
+
+                    <div className="col-span-1 text-center">
                       <div className="flex items-center justify-center">
 
-                        {/* <button className='decrease px-2 py-1 bg-gray-200' onClick={() => { increaseQuantity(cardinfo.id) }}>-</button>
-                        <input type="number" className='quantityInput text-black w-full text-center' defaultValue={orederQuantity} onChange={(e) => setOrederQuantity(cardinfo.id(Number(e.target.value)))} />
-                        <button className='increase px-2 py-1 bg-gray-200' onClick={() => { decreaseQuantity(cardinfo.id) }}>+</button> */}
-
-                        <button className='decrease px-2 py-1 bg-gray-200' onClick={() => { decreaseQuantity(cardinfo.id) }}>-</button>
-                        {/* <input type="number" className='quantityInput text-black w-full text-center' defaultValue={orederQuantity} min={1} onChange={(e) => UpdateItemQuantity(cardinfo.id, setOrederQuantity(Number(e.target.value)))} /> */}
-                        <input type="number" className='quantityInput text-black w-full text-center' defaultValue={cardinfo.quantity} min={1} onChange={(e) => UpdateItemQuantity(cardinfo.id, cardinfo.quantity)} />
-                        <button className='increase px-2 py-1 bg-gray-200' onClick={() => { increaseQuantity(cardinfo.id) }}>+</button>
+                        {currency}
+                         {Productprice}
 
                       </div>
                     </div>
+
+
+                    <div className="col-span-1 text-center">
+                      <div className="flex items-center justify-center">
+
+                        {currency}
+
+                      </div>
+                    </div>
+
+
+
+                    {/* Quantity Feature  Finish */}
+
 
                   </li>
                 )

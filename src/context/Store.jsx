@@ -10,8 +10,9 @@ const StoreProvider = (props) => {
     const [product, setProduct] = useState([])
     const [addItemCount, setAddItemCount] = useState(0)
     const [addItem, setAddItem] = useState([])
-    const [orederQuantity, setOrederQuantity] = useState([])
+    // const [orederQuantity, setOrederQuantity] = useState([])
     const [favItem, setFavItem] = useState([])
+    const [Productprice, setProductPrice] = useState(0)
 
 
 
@@ -22,9 +23,6 @@ const StoreProvider = (props) => {
     const currencyFrom = 'From'
 
 
-
-
-    let CopyCartData = structuredClone(addItem) // All  Items Copy (Clone) Data
 
 
 
@@ -53,12 +51,18 @@ const StoreProvider = (props) => {
 
 
 
+    // console.log(addItem.quantity);
+
+
     useEffect(() => {
         // console.log('Added Items', addItem);
         // console.log(addItem);
         let cartItemsCount = addItem.length
         setAddItemCount(cartItemsCount)
         setFavItem(favItem)
+        setAddItem(addItem)
+        console.log(addItem);
+
 
     }, [addItem, favItem,])
 
@@ -68,6 +72,8 @@ const StoreProvider = (props) => {
 
 
     const AddToCart = (items) => {
+        let CopyCartData = structuredClone(addItem) // All  Items Copy (Clone) Data
+
 
         if (CopyCartData.length < CopyCartData.length + 1) {
             const matchProduct = CopyCartData.find(item => item.id === items.id)
@@ -113,45 +119,39 @@ const StoreProvider = (props) => {
 
 
     const increaseQuantity = (itemID) => {
-        let currentProduct = CopyCartData.find((item_products) => item_products.id === itemID)
-        let orderQuantity = currentProduct.quantity
+        const updatedCart = addItem.map(item => {
+            if (item.id === itemID) {
+                return { ...item, quantity: item.quantity + 1 }; // Increment quantity
+            }
+            return item;
+        });
+        setAddItem(updatedCart); // Update the state to trigger a re-render
+        console.log(updatedCart); // Debugging: see updated cart
 
-        function UpdateQuantity() {
-            console.log('working', orderQuantity++, typeof orderQuantity);
-
-        }
-        UpdateQuantity()
-
-    }
+    };
 
     const decreaseQuantity = (itemID) => {
-        console.log(itemID);
+        const updatedCart = addItem.map(item => {
+            if (item.id === itemID && item.quantity > 1) {
+                return { ...item, quantity: item.quantity - 1 }; // Decrement quantity if > 1
+            }
+            return item;
+        });
+        setAddItem(updatedCart); // Update the state to trigger a re-render
+        console.log(updatedCart); // Debugging: see updated cart
+    };
 
+
+
+
+
+
+    function TotalPrice(id,quantity, price) {
+        console.log(id,quantity,price);
+        
+        let TotalproductPrice = quantity * price
+        setProductPrice(TotalproductPrice)
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -164,7 +164,7 @@ const StoreProvider = (props) => {
     const value = {
         rupee, currencyFrom, currency, product, setProduct,
         addItemCount, setAddItemCount, AddToCart, addItem, setAddItem,
-        favItem, setFavItem, increaseQuantity, decreaseQuantity, UpdateItemQuantity,
+        favItem, setFavItem, increaseQuantity, decreaseQuantity, UpdateItemQuantity,TotalPrice,Productprice
     }
 
 
