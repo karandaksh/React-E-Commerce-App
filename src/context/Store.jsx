@@ -10,9 +10,10 @@ const StoreProvider = (props) => {
     const [product, setProduct] = useState([])
     const [addItemCount, setAddItemCount] = useState(0)
     const [addItem, setAddItem] = useState([])
+    const [favItem, setFavItem] = useState([]) // Added one value in all object fav and default value its false and click its true 
+    
     // const [orederQuantity, setOrederQuantity] = useState([])
-    const [favItem, setFavItem] = useState([])
-    const [Productprice, setProductPrice] = useState(0)
+    // const [Productprice, setProductPrice] = useState(new Array(addItem))
 
 
 
@@ -61,7 +62,9 @@ const StoreProvider = (props) => {
         setAddItemCount(cartItemsCount)
         setFavItem(favItem)
         setAddItem(addItem)
-        console.log(addItem);
+        // console.log(addItem);
+        // console.log(Productprice);
+        
 
 
     }, [addItem, favItem,])
@@ -146,12 +149,12 @@ const StoreProvider = (props) => {
 
 
 
-    function TotalPrice(id,quantity, price) {
-        console.log(id,quantity,price);
+    // function TotalPrice(id,quantity, price) {
+    //     console.log(id,quantity,price);
         
-        let TotalproductPrice = quantity * price
-        setProductPrice(TotalproductPrice)
-    }
+    //     let TotalproductPrice = quantity * price
+    //     setProductPrice(TotalproductPrice)
+    // }
 
 
 
@@ -164,7 +167,7 @@ const StoreProvider = (props) => {
     const value = {
         rupee, currencyFrom, currency, product, setProduct,
         addItemCount, setAddItemCount, AddToCart, addItem, setAddItem,
-        favItem, setFavItem, increaseQuantity, decreaseQuantity, UpdateItemQuantity,TotalPrice,Productprice
+        favItem, setFavItem, increaseQuantity, decreaseQuantity, UpdateItemQuantity,
     }
 
 
