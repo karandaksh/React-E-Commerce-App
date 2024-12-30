@@ -8,6 +8,10 @@
     scroll-behavior: smooth;
   }
 
+  .box-shadow{
+    box-shadow: 0 0px 15px 3px #00000026;
+  }
+
 
 
 @tailwind base;

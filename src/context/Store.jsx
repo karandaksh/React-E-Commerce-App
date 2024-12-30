@@ -60,6 +60,7 @@ const StoreProvider = (props) => {
         // console.log(addItem);
         let cartItemsCount = addItem.length
         setAddItemCount(cartItemsCount)
+        
         setFavItem(favItem)
         setAddItem(addItem)
         // console.log(addItem);
@@ -76,6 +77,7 @@ const StoreProvider = (props) => {
 
     const AddToCart = (items) => {
         let CopyCartData = structuredClone(addItem) // All  Items Copy (Clone) Data
+
 
 
         if (CopyCartData.length < CopyCartData.length + 1) {
@@ -97,16 +99,13 @@ const StoreProvider = (props) => {
                     transition: Flip,
                 });
                 return
-                // console.log('This Product Already Added');
-                // console.log('Second', matchProduct);
-                // return
+
             }
         }
         else {
             console.log(CopyCartData);
             console.log('Somethnig went wrong');
         }
-
     }
 
 
@@ -129,7 +128,7 @@ const StoreProvider = (props) => {
             return item;
         });
         setAddItem(updatedCart); // Update the state to trigger a re-render
-        console.log(updatedCart); // Debugging: see updated cart
+        // console.log(updatedCart); // Debugging: see updated cart
 
     };
 
@@ -141,7 +140,7 @@ const StoreProvider = (props) => {
             return item;
         });
         setAddItem(updatedCart); // Update the state to trigger a re-render
-        console.log(updatedCart); // Debugging: see updated cart
+        // console.log(updatedCart); // Debugging: see updated cart
     };
 
 
@@ -167,7 +166,7 @@ const StoreProvider = (props) => {
     const value = {
         rupee, currencyFrom, currency, product, setProduct,
         addItemCount, setAddItemCount, AddToCart, addItem, setAddItem,
-        favItem, setFavItem, increaseQuantity, decreaseQuantity, UpdateItemQuantity,
+        favItem, setFavItem, increaseQuantity, decreaseQuantity, UpdateItemQuantity, 
     }
 
 
