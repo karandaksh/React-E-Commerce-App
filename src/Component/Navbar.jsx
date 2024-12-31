@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 
 // import { Store } from '../context/Store'
@@ -7,7 +7,35 @@ import { Store } from '../context/Store'
 
 const Navbar = () => {
 
-    const { addItemCount } = useContext(Store)
+    const { addItemCount, mode, setMode } = useContext(Store)
+
+
+
+    useEffect(() => {
+        // Try to get the theme from localStorage
+        const savedTheme = localStorage.getItem(mode);
+        
+        // If we find a saved theme, update the state with that theme
+        if (savedTheme) {
+          setMode(savedTheme);
+        }
+      }, []);
+    
+
+
+      function toggleTheme() {
+        // If the current theme is "light", change to "dark", and vice versa
+        const newTheme = mode === "light" ? "dark" : "light";
+    
+        // Save the new theme in localStorage
+        localStorage.setItem("theme", newTheme);
+    
+        // Update the theme state
+        setMode(newTheme);
+      }
+
+
+
 
 
     return (
@@ -28,7 +56,7 @@ const Navbar = () => {
                                 <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
                             </svg>
                         </button>
-                        </div>*/}
+                        </div> */}
 
                     <ul className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 hidden md:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6">
                         <li className='flex'><NavLink to="" className={({ isActive }) => isActive ? "text-sm text-white bg-orange-500 px-4 py-2 rounded" : "text-sm text-black px-4 py-2 font-medium"}>Home</NavLink></li>
@@ -50,6 +78,13 @@ const Navbar = () => {
                             </NavLink>
                         </li>
 
+                        <li className='flex'>
+                            {/* <button onClick={() => setMode((prev) => !prev)}> */}
+                            <button onClick={toggleTheme}>
+                                <i className="fa-light fa-brightness"></i>
+                                <i className="fa-duotone fa-solid fa-moon"></i>
+                            </button>
+                        </li>
 
 
 

@@ -138,17 +138,35 @@ const Cart = () => {
                   </div>
 
                   <div className="flex justify-between items-center py-2 my-2 border-t-2 border-b-2">
-                    <p className="text-2xl">Calculation</p>
+                    <p className="text-xl">Calculation</p>
                     <div className="flex justify-between items-center w-2/4">
-                      <p>{currency} {totalPrice}</p> -
-                      <p>{currency} {totaldiscountPrice()}</p>
+
+                      <p className='relative group'>
+                        <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 text-sm bg-black text-white rounded px-2 py-1">Total Price</div>
+                        {currency} {totalPrice}
+                      </p>
+
+                      <p className='relative group'>
+                        <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 text-sm bg-black text-white rounded px-2 py-1">Minus</div>
+                        -
+                      </p>
+
+
+                      <p className='relative group'>
+                        <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 text-sm bg-black text-white rounded px-2 py-1">Discount Price</div>
+                        {currency} {totaldiscountPrice()}
+                      </p>
+
+
                     </div>
                   </div>
 
 
-                  <div className="flex justify-end items-center py-2 my-2">
-                    <p>{`${(totalPrice - totaldiscountPrice()).toFixed(2)}`} </p>
+                  <div className="flex justify-between items-center py-2 my-2">
+                    <p className='text-green-500 text-2xl'>Payble Amount</p>
+                    <p className='text-2xl'>{`${(totalPrice - totaldiscountPrice()).toFixed(2)}`} </p>
                   </div>
+
 
 
                 </div>
