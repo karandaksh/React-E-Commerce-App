@@ -12,13 +12,11 @@ const StoreProvider = (props) => {
     const [addItem, setAddItem] = useState([])
     const [favItem, setFavItem] = useState([]) // Added one value in all object fav and default value its false and click its true 
 
-    const [mode, setMode] = useState("dark")
 
-    // const [orederQuantity, setOrederQuantity] = useState([])
-    // const [Productprice, setProductPrice] = useState(new Array(addItem))
+    const savedMode = localStorage.getItem('ThemeMode');
+    const [mode, setMode] = useState(savedMode || 'light');
 
-
-
+    // const [mode, setMode] = useState("dark")
 
 
     const rupee = '₹'
@@ -67,7 +65,8 @@ const StoreProvider = (props) => {
         setAddItem(addItem)
         // console.log(addItem);
         // console.log(Productprice);
-    }, [addItem, favItem])
+    }, [addItem, favItem,])
+
 
 
 

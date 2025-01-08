@@ -45,7 +45,7 @@ const Product = () => {
   return (
     <div>
       Product
-      <div className="border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100">
+      <div className="border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100 dark:text-white">
         {/* <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row  "> */}
         <div className="grid gap-28 grid-cols-2 sm:gap-12 flex-col sm:flex-row justify-between ">
 
@@ -63,7 +63,7 @@ const Product = () => {
               }
 
             </div>
-            <div className="w-full sm:w-2/4 lg:w-4/6">
+            <div className="w-full sm:w-2/4 lg:w-4/6 dark:bg-zinc-800">
               <img src={cardLgImg} className='w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer' alt="" />
 
             </div>

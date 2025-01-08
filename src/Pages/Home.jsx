@@ -6,7 +6,7 @@ import Card from '../Component/Card'
 
 const Home = () => {
   const { product, currency, } = useContext(Store)
-  const sliceData = 10
+  const sliceData = 15
   // console.log(product);
   const ProductCopy = product.slice(0, sliceData)
 
@@ -19,8 +19,8 @@ const Home = () => {
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-4 gap-2 px-4'>
         {ProductCopy.map((item, index) => (
 
-          <div className='col-span-1 md:col-span-1 mx-auto border' key={index}>
-            <Link to={`/product/${item.id}`}>
+          <div className='col-span-1 md:col-span-1 mx-auto border-2 dark:border-zinc-700' key={index}>
+            <Link className='' to={`/product/${item.id}`}>
               <Card id={item.id} thumbnail={item.thumbnail} title={item.title} price={item.price} currency={currency} rating={item.rating}  />
             </Link>
           </div>

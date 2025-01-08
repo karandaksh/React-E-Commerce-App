@@ -54,7 +54,7 @@ const Cart = () => {
 
 
                   {addItem.map((item, index) => (
-                    <li key={index} className="grid grid-cols-9 gap-4 py-4 items-center border-b-2 hover:shadow-[0_0px_10px_6px_#0000001a,_0_2px_4px_-2px_#0000001a] hover:rounded-lg transition duration-400 bg-white p-5 my-4">
+                    <li key={index} className="grid grid-cols-9 gap-4 py-4 items-center border-b-2 hover:shadow-[0_0px_10px_6px_#0000001a,_0_2px_4px_-2px_#0000001a] hover:rounded-lg transition duration-400 bg-white dark:bg-neutral-700 dark:text-white p-5 my-4">
                       {/* <li key={index} className="grid grid-cols-9 gap-4 py-4 items-center border-b-2 hover:shadow-[0_0px_10px_6px_#0000001a, 0 2px 4px -2px #0000001a] hover:rounded-lg transition duration-400 bg-white p-5 my-4"> */}
 
                       {/* Product Image */}
@@ -78,16 +78,16 @@ const Cart = () => {
                       <div className="col-span-1 text-center">
                         <div className="flex items-center justify-center">
 
-                          <button className="decrease px-2 py-1 bg-gray-200" onClick={() => decreaseQuantity(item.id)} > - </button>
+                          <button className="decrease px-2 py-1 bg-gray-200 dark:bg-zinc-500" onClick={() => decreaseQuantity(item.id)} > - </button>
 
-                          <input type="number" className="quantityInput text-black w-full text-center" value={item.quantity}
+                          <input type="number" className="quantityInput text-black dark:bg-transparent dark:text-white w-full text-center" value={item.quantity}
                             onChange={(e) => {
                               const newQuantity = Math.max(Number(e.target.value), 1);
                               const updatedCart = addItem.map((cartItem) => cartItem.id === item.id ? { ...cartItem, quantity: newQuantity } : cartItem);
                               setAddItem(updatedCart);
                             }} />
 
-                          <button className="increase px-2 py-1 bg-gray-200" onClick={() => increaseQuantity(item.id)}>+</button>
+                          <button className="increase px-2 py-1 bg-gray-200 dark:bg-zinc-500" onClick={() => increaseQuantity(item.id)}>+</button>
 
                         </div>
                       </div>
@@ -112,7 +112,7 @@ const Cart = () => {
 
               {/* Price Details Section */}
               <div className="col-span-3">
-                <div className="box-shadow bg-white p-5 rounded-md">
+                <div className="box-shadow bg-white dark:bg-neutral-700 dark:text-white p-5 rounded-md">
                   <h4 className="text-2xl py-3 border-b-2">Price Details</h4>
 
                   <div className="flex justify-between items-center py-2 my-2">
