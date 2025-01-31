@@ -89,7 +89,7 @@ const Navbar = () => {
             
             htmlTag.classList.remove('dark');
             htmlTag.classList.add('light');
-            console.log('erwemlkij');
+            // console.log('erwemlkij');
         }
         else {
             htmlTag.classList.remove('light');
